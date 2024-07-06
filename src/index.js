@@ -17,6 +17,10 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   bootstrap({ strapi }) {
+    // make self request
+    const preventServerSleep = require("./preventServerSleep")
+    preventServerSleep();
+
     const { Server } = require("socket.io");
     let io = new Server(strapi.server.httpServer, {
       cors: {
